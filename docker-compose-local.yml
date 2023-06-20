@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  name_service:
+    build: .
+    image: name_service:v1
+    container_name: name_service-local
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./src:/var/www/name_service
+    environment:
+      - PORT=8091
+      - DOCUMENTROOT=/var/www/name_service
+      - SERVERNAME=name_service.local
